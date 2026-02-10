@@ -10,19 +10,19 @@ embedded DevUI API server with that flow registered.
 From repo root:
 
 ```bash
-go run ./examples/openclaw_ui --addr=127.0.0.1:8091 --api-base=http://127.0.0.1:7070
+go run ./examples/openclaw_ui --addr=0.0.0.0:8091 --api-base=http://127.0.0.1:7070
 ```
 
 Self-contained mode (starts embedded API + flow):
 
 ```bash
-go run ./examples/openclaw_ui --start-api --api-addr=127.0.0.1:7070 --addr=127.0.0.1:8091
+go run ./examples/openclaw_ui --start-api --api-addr=0.0.0.0:7070 --addr=0.0.0.0:8091
 ```
 
 Optional API key:
 
 ```bash
-go run ./examples/openclaw_ui --addr=127.0.0.1:8091 --api-base=http://127.0.0.1:7070 --api-key="<DEVUI_API_KEY>"
+go run ./examples/openclaw_ui --addr=0.0.0.0:8091 --api-base=http://127.0.0.1:7070 --api-key="<DEVUI_API_KEY>"
 ```
 
 Then open `http://127.0.0.1:8091`.

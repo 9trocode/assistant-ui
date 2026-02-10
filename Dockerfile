@@ -25,4 +25,4 @@ COPY --from=builder /app/openclaw-ui /app/openclaw-ui
 EXPOSE 8091 7070
 
 ENTRYPOINT ["/app/openclaw-ui"]
-CMD ["--start-api", "--api-addr=127.0.0.1:7070", "--addr=127.0.0.1:8091"]
+CMD ["--start-api", "--api-addr=0.0.0.0:7070", "--addr=0.0.0.0:8091"]
