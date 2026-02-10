@@ -15,11 +15,9 @@ COPY main.go ./
 RUN set -eux; \
     rm -rf /tmp/framework-src; \
     git clone --depth 1 --branch "${FRAMEWORK_REF}" "${FRAMEWORK_REPO}" /tmp/framework-src; \
-    MOD_DIR="/tmp/framework-src"; \
-    if [ -f /tmp/framework-src/framework/go.mod ]; then MOD_DIR="/tmp/framework-src/framework"; fi; \
     go mod init assistant-ui; \
-    go mod edit -require github.com/PipeOpsHQ/agent-sdk-go/framework@v0.0.0; \
-    go mod edit -replace github.com/PipeOpsHQ/agent-sdk-go/framework=${MOD_DIR}; \
+    go mod edit -require github.com/PipeOpsHQ/agent-sdk-go@v0.0.0; \
+    go mod edit -replace github.com/PipeOpsHQ/agent-sdk-go=/tmp/framework-src; \
     go mod tidy; \
     CGO_ENABLED=0 GOOS=linux go build -o /app/openclaw-ui .
 
