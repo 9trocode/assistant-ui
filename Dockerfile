@@ -5,12 +5,21 @@ WORKDIR /app
 
 RUN apk add --no-cache ca-certificates git
 
-COPY go.mod ./
-RUN go mod download
-
 COPY . .
 
-RUN CGO_ENABLED=0 GOOS=linux go build -o /app/openclaw-ui ./examples/openclaw_ui
+RUN set -eux; \
+    if [ -f go.mod ] && [ -f examples/openclaw_ui/main.go ]; then \
+      go mod download; \
+      CGO_ENABLED=0 GOOS=linux go build -o /app/openclaw-ui ./examples/openclaw_ui; \
+    elif [ -f main.go ]; then \
+      go mod init openclaw-ui-local || true; \
+      go get github.com/PipeOpsHQ/agent-sdk-go/framework@latest; \
+      go mod tidy; \
+      CGO_ENABLED=0 GOOS=linux go build -o /app/openclaw-ui .; \
+    else \
+      echo "Unsupported build context. Use repo root or examples/openclaw_ui."; \
+      exit 1; \
+    fi
 
 # Runtime stage
 FROM alpine:3.19
