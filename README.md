@@ -26,3 +26,12 @@ go run . --addr=127.0.0.1:8091 --api-base=http://127.0.0.1:7070 --api-key="<DEVU
 ```
 
 Then open `http://127.0.0.1:8091`.
+
+## Docker
+
+Build from the **repository root** so the Docker context includes `go.mod` and full source:
+
+```bash
+docker build -f examples/openclaw_ui/Dockerfile -t openclaw-ui .
+docker run --rm -p 8091:8091 -p 7070:7070 openclaw-ui
+```
