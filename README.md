@@ -26,4 +26,3 @@ go run . --addr=127.0.0.1:8091 --api-base=http://127.0.0.1:7070 --api-key="<DEVU
 ```
 
 Then open `http://127.0.0.1:8091`.
-# assistant-ui
