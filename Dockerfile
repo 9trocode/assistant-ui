@@ -17,9 +17,12 @@ RUN set -eux; \
     elif [ -f main.go ]; then \
       rm -rf /tmp/framework-src; \
       git clone --depth 1 --branch "${FRAMEWORK_REF}" "${FRAMEWORK_REPO}" /tmp/framework-src; \
-      cd /tmp/framework-src; \
-      go mod download; \
-      CGO_ENABLED=0 GOOS=linux go build -o /app/openclaw-ui ./examples/openclaw_ui; \
+      MOD_DIR="/tmp/framework-src"; \
+      if [ -f /tmp/framework-src/framework/go.mod ]; then MOD_DIR="/tmp/framework-src/framework"; fi; \
+      go mod init openclaw-ui-local || true; \
+      go mod edit -replace github.com/PipeOpsHQ/agent-sdk-go/framework=${MOD_DIR}; \
+      go mod tidy; \
+      CGO_ENABLED=0 GOOS=linux go build -o /app/openclaw-ui .; \
     else \
       echo "Unsupported build context. Use repo root or examples/openclaw_ui."; \
       exit 1; \
