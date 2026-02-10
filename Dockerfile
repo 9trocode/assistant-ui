@@ -10,7 +10,7 @@ RUN go mod download
 
 COPY . .
 
-RUN CGO_ENABLED=0 GOOS=linux go build -o /app/openclaw-ui ./examples/openclaw_ui
+RUN CGO_ENABLED=0 GOOS=linux go build -o /app/openclaw-ui .
 
 # Runtime stage
 FROM alpine:3.19
