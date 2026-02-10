@@ -1,9 +1,0 @@
-module assistant-ui
-
-go 1.24.1
-
-require github.com/PipeOpsHQ/agent-sdk-go v0.0.0
-
-// Standalone mode uses a local checkout path for now.
-// Update this absolute path for your machine/workspace.
-replace github.com/PipeOpsHQ/agent-sdk-go => /path/to/agent-sdk-go
