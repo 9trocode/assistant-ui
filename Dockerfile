@@ -21,15 +21,24 @@ RUN apk add --no-cache ca-certificates tzdata
 
 COPY --from=builder /app/openclaw-ui /app/openclaw-ui
 
+# Build-time args -> runtime env defaults
+ARG OPENCLAW_START_API=true
+ARG OPENCLAW_API_ADDR=0.0.0.0:7070
+ARG OPENCLAW_ADDR=0.0.0.0:8091
+ARG OPENCLAW_API_BASE=
+ARG OPENCLAW_API_KEY=
+
 # Runtime configuration
 # - OPENCLAW_START_API: "true" to start embedded DevUI API
 # - OPENCLAW_API_ADDR: embedded API listen address
 # - OPENCLAW_ADDR: OpenClaw UI listen address
 # - OPENCLAW_API_BASE: optional external DevUI API URL (used when not embedding)
 # - OPENCLAW_API_KEY: optional DevUI API key sent as X-API-Key
-ENV OPENCLAW_START_API=true \
-    OPENCLAW_API_ADDR=0.0.0.0:7070 \
-    OPENCLAW_ADDR=0.0.0.0:8091
+ENV OPENCLAW_START_API=${OPENCLAW_START_API} \
+    OPENCLAW_API_ADDR=${OPENCLAW_API_ADDR} \
+    OPENCLAW_ADDR=${OPENCLAW_ADDR} \
+    OPENCLAW_API_BASE=${OPENCLAW_API_BASE} \
+    OPENCLAW_API_KEY=${OPENCLAW_API_KEY}
 
 # OpenClaw chat UI + embedded DevUI API
 EXPOSE 8091 7070
