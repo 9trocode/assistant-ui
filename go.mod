@@ -2,7 +2,7 @@ module assitant-ui
 
 go 1.25.5
 
-require github.com/PipeOpsHQ/agent-sdk-go v0.5.1
+require github.com/PipeOpsHQ/agent-sdk-go v0.6.0
 
 require (
 	cloud.google.com/go v0.123.0 // indirect
