@@ -18,7 +18,7 @@ const openclawFlowName = "openclaw-ui-example"
 
 func main() {
 	addr := flag.String("addr", "0.0.0.0:8091", "UI listen address")
-	apiBase := flag.String("api-base", "http://127.0.0.1:7070", "Framework DevUI API base URL")
+	apiBase := flag.String("api-base", "http://127.0.0.1:7070", "Framework Dev-UI API base URL")
 	apiKey := flag.String("api-key", "", "Optional DevUI API key")
 	startAPI := flag.Bool("start-api", false, "Start embedded DevUI API (SDK-style) with openclaw flow")
 	apiAddr := flag.String("api-addr", "0.0.0.0:7070", "Embedded DevUI API listen address when --start-api=true")
