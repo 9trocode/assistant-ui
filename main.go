@@ -43,6 +43,16 @@ func main() {
 		log.Fatalf("invalid --api-base URL: %v", err)
 	}
 	proxy := httputil.NewSingleHostReverseProxy(upstream)
+	defaultAPIKey := strings.TrimSpace(*apiKey)
+	if defaultAPIKey != "" {
+		originalDirector := proxy.Director
+		proxy.Director = func(req *http.Request) {
+			originalDirector(req)
+			if strings.TrimSpace(req.Header.Get("X-API-Key")) == "" {
+				req.Header.Set("X-API-Key", defaultAPIKey)
+			}
+		}
+	}
 
 	mux := http.NewServeMux()
 	mux.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
