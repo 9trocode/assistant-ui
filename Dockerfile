@@ -12,7 +12,7 @@ COPY . .
 
 RUN CGO_ENABLED=0 GOOS=linux go build -o /app/openclaw-ui .
 
-# Runtime stage
+# Runtime stages
 FROM alpine:3.19
 
 WORKDIR /app
