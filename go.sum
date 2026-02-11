@@ -16,6 +16,8 @@ github.com/PipeOpsHQ/agent-sdk-go v0.3.0 h1:VaZqas4QCh46QF1RqKyVdnc2Eo+hwcnvoNGT
 github.com/PipeOpsHQ/agent-sdk-go v0.3.0/go.mod h1:oBw0lI5hSjto/34aRnT5WlxEz4u1GPfGPbnBuMvimN4=
 github.com/PipeOpsHQ/agent-sdk-go v0.4.0 h1:on2mYlMGEnrJZVCp0wLgk4i5fC0qtufcYK4ufh2Abjc=
 github.com/PipeOpsHQ/agent-sdk-go v0.4.0/go.mod h1:qJ2PFpn/vTU6TzIDJqGhMHXSOEe1PCAK0gtnSJ3mjbg=
+github.com/PipeOpsHQ/agent-sdk-go v0.5.0 h1:J9fyzaFt87FJgEykfUSygQfWRGg1Ge26MO2ad87I4wg=
+github.com/PipeOpsHQ/agent-sdk-go v0.5.0/go.mod h1:qJ2PFpn/vTU6TzIDJqGhMHXSOEe1PCAK0gtnSJ3mjbg=
 github.com/cespare/xxhash/v2 v2.3.0 h1:UL815xU9SqsFlibzuggzjXhog7bL6oX9BbNZnL2UFvs=
 github.com/cespare/xxhash/v2 v2.3.0/go.mod h1:VGX0DQ3Q6kWi7AoAeZDth3/j3BFtOZR5XLFGgcrjCOs=
 github.com/dgryski/go-rendezvous v0.0.0-20200823014737-9f7001d12a5f h1:lO4WD4F/rVNCu3HqELle0jiPLLBs70cWOduZpkS1E78=
