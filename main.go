@@ -8,6 +8,7 @@ import (
 	"net/http"
 	"net/http/httputil"
 	"net/url"
+	"os"
 	"strings"
 
 	"github.com/PipeOpsHQ/agent-sdk-go/devui"
@@ -23,9 +24,16 @@ func main() {
 	startAPI := flag.Bool("start-api", false, "Start embedded DevUI API (SDK-style) with openclaw flow")
 	apiAddr := flag.String("api-addr", "0.0.0.0:7070", "Embedded DevUI API listen address when --start-api=true")
 	flag.Parse()
+	defaultAPIKey := strings.TrimSpace(*apiKey)
 
 	if *startAPI {
 		registerOpenClawFlow()
+		if defaultAPIKey != "" {
+			_ = os.Setenv("AGENT_UI_BOOTSTRAP_API_KEY", defaultAPIKey)
+			if strings.TrimSpace(os.Getenv("AGENT_UI_BOOTSTRAP_API_KEY_ROLE")) == "" {
+				_ = os.Setenv("AGENT_UI_BOOTSTRAP_API_KEY_ROLE", "admin")
+			}
+		}
 		go func() {
 			if err := devui.Start(context.Background(), devui.Options{
 				Addr:        strings.TrimSpace(*apiAddr),
@@ -43,7 +51,6 @@ func main() {
 		log.Fatalf("invalid --api-base URL: %v", err)
 	}
 	proxy := httputil.NewSingleHostReverseProxy(upstream)
-	defaultAPIKey := strings.TrimSpace(*apiKey)
 	if defaultAPIKey != "" {
 		originalDirector := proxy.Director
 		proxy.Director = func(req *http.Request) {
